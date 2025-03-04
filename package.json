@@ -1,7 +1,7 @@
 {
   "name": "@xn-intenton-z2a/plot-code-lib",
   "version": "0.2.1-12",
-  "description": "Be a go-to plot library with a CLI, be the jq of formulae visualisations.",
+  "description": "A versatile CLI tool to plot mathematical functions accurately with flexible output formats and advanced analysis features.",
   "type": "module",
   "main": "src/lib/main.js",
   "scripts": {

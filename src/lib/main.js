@@ -15,11 +15,12 @@
  *          summary statistics, rotation support and geometric computations for enhanced data insights.
  *
  * Change Log:
- *  - Updated mission statement to align with current features and pruned outdated references.
+ *  - Updated mission statement and pruned outdated references.
  *  - Added support for advanced query filtering via advancedQueryPlotData function.
  *  - Extended rotation feature and summary statistics support.
  *  - Added new geometric computation functions: computeCentroid and computeBoundingBox.
  *  - Enhanced error reporting in file writing (plotToFile) for better testability.
+ *  - Refreshed README documentation per CONTRIBUTING.md guidelines.
  *  - Retained PNG conversion stub as a placeholder for future implementation.
  */
 

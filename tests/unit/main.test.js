@@ -168,6 +168,14 @@ describe('Exported API Functions', () => {
     expect(bbox.maxY).toBe(2);
   });
 
+  // New Test for README content reflecting updated documentation
+  test('README file contains updated documentation references', () => {
+    const readmeContent = fs.readFileSync('README.md', 'utf8');
+    expect(readmeContent).toContain('Equation Plotter CLI');
+    expect(readmeContent).toContain('[CONTRIBUTING.md]');
+    expect(readmeContent).toContain('Be a go-to plot library with a CLI');
+  });
+
   describe('Error Handling', () => {
     test('parseGenericQuadratic throws error for invalid input', () => {
       expect(() => mainModule.parseGenericQuadratic('invalid formula')).toThrow();
