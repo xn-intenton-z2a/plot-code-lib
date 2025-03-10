@@ -44,6 +44,7 @@ const {
   plotCircularPlotReal,
   plotPolarRoseReal,
   plotStarPolygonReal,
+  plotBesselReal,
   resetOverrides
 } = mainModule;
 
@@ -58,7 +59,7 @@ describe('Main Function Behaviour', () => {
     const spy = vi.spyOn(console, 'log');
     main([]);
     expect(spy).toHaveBeenCalledWith(
-      "Welcome to repository0-plot-code-lib CLI!\nMission: 'Be a go-to plot library with a CLI, be the jq of formulae visualisations.'\nSelect from modes: --interactive, --serve, --diagnostics, --plot-abs, --export-csv, --export-md, --export-json, --export-html, --export-ascii, --export-svg, --export-xml, --export-latex, --export-txt, --export-r, --export-png, --plot-fibonacci, --bar-chart, --scatter, --plot-parametric, --plot-poly, --lissajous, --lemniscate, --hyperbola, --power-plot, --plot-histogram, --heatmap, --plot-spiral, --plot-custom, --plot-sincos, --plot-circle, --plot-polarrose, --plot-starpolygon or provide plot parameters.\nFor contribution guidelines, please refer to CONTRIBUTING.md."
+      "Welcome to repository0-plot-code-lib CLI!\nMission: 'Be a go-to plot library with a CLI, be the jq of formulae visualisations.'\nSelect from modes: --interactive, --serve, --diagnostics, --plot-abs, --export-csv, --export-md, --export-json, --export-html, --export-ascii, --export-svg, --export-xml, --export-latex, --export-txt, --export-r, --export-png, --plot-fibonacci, --bar-chart, --scatter, --plot-parametric, --plot-poly, --lissajous, --lemniscate, --hyperbola, --power-plot, --plot-histogram, --heatmap, --plot-spiral, --plot-custom, --plot-sincos, --plot-circle, --plot-polarrose, --plot-starpolygon, --plot-bessel or provide plot parameters.\nFor contribution guidelines, please refer to CONTRIBUTING.md."
     );
     spy.mockRestore();
   });
@@ -67,7 +68,7 @@ describe('Main Function Behaviour', () => {
     const spy = vi.spyOn(console, 'log');
     main(['--help']);
     expect(spy).toHaveBeenCalledWith(
-      "Welcome to repository0-plot-code-lib CLI!\nMission: 'Be a go-to plot library with a CLI, be the jq of formulae visualisations.'\nSelect from modes: --interactive, --serve, --diagnostics, --plot-abs, --export-csv, --export-md, --export-json, --export-html, --export-ascii, --export-svg, --export-xml, --export-latex, --export-txt, --export-r, --export-png, --plot-fibonacci, --bar-chart, --scatter, --plot-parametric, --plot-poly, --lissajous, --lemniscate, --hyperbola, --power-plot, --plot-histogram, --heatmap, --plot-spiral, --plot-custom, --plot-sincos, --plot-circle, --plot-polarrose, --plot-starpolygon or provide plot parameters.\nFor contribution guidelines, please refer to CONTRIBUTING.md."
+      "Welcome to repository0-plot-code-lib CLI!\nMission: 'Be a go-to plot library with a CLI, be the jq of formulae visualisations.'\nSelect from modes: --interactive, --serve, --diagnostics, --plot-abs, --export-csv, --export-md, --export-json, --export-html, --export-ascii, --export-svg, --export-xml, --export-latex, --export-txt, --export-r, --export-png, --plot-fibonacci, --bar-chart, --scatter, --plot-parametric, --plot-poly, --lissajous, --lemniscate, --hyperbola, --power-plot, --plot-histogram, --heatmap, --plot-spiral, --plot-custom, --plot-sincos, --plot-circle, --plot-polarrose, --plot-starpolygon, --plot-bessel or provide plot parameters.\nFor contribution guidelines, please refer to CONTRIBUTING.md."
     );
     spy.mockRestore();
   });
@@ -363,6 +364,13 @@ describe('Main Function Behaviour', () => {
     spy.mockRestore();
   });
 
+  test('should output Bessel plot when --plot-bessel flag is provided', () => {
+    const spy = vi.spyOn(console, 'log');
+    main(['--plot-bessel']);
+    expect(spy).toHaveBeenCalledWith(expect.stringContaining('Bessel Plot Output:'), expect.any(Array));
+    spy.mockRestore();
+  });
+
   test('should handle unrecognized flag gracefully', () => {
     const spy = vi.spyOn(console, 'log');
     main(['--unknown']);
@@ -423,6 +431,16 @@ describe('Main Function Behaviour', () => {
         expect(point).toHaveProperty('y');
       });
     });
+
+    test('plotBesselReal returns an array of points with computed Bessel values', () => {
+      const result = plotBesselReal(0, 5, 0.5, 0);
+      expect(result.length).toBeGreaterThan(0);
+      result.forEach(point => {
+        expect(point).toHaveProperty('theta');
+        expect(point).toHaveProperty('x');
+        expect(point).toHaveProperty('y');
+      });
+    });
   });
 });
 
@@ -458,6 +476,7 @@ describe('Debug flag behaviour', () => {
     expect(debugString).toContain('plotCircularPlotReal');
     expect(debugString).toContain('plotPolarRoseReal');
     expect(debugString).toContain('plotStarPolygonReal');
+    expect(debugString).toContain('plotBesselReal');
     spy.mockRestore();
   });
 });

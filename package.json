@@ -1,7 +1,7 @@
 {
   "name": "@xn-intenton-z2a/repository0-plot-code-lib",
-  "version": "0.7.79",
-  "description": "A versatile CLI tool for plotting mathematical functions in various formats, now with extended features, improved test coverage, and refreshed documentation in line with CONTRIBUTING guidelines.",
+  "version": "0.7.80",
+  "description": "A versatile CLI tool for plotting mathematical functions in various formats, now with extended features including Bessel plotting, improved test coverage, and refreshed documentation in line with CONTRIBUTING guidelines.",
   "type": "module",
   "main": "src/lib/main.js",
   "scripts": {

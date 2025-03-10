@@ -15,7 +15,8 @@ repository0-plot-code-lib is a versatile CLI tool designed to plot and analyze m
 - **New Features:**
   - **Fibonacci Spiral, Combined Sin-Cos Plotting**
   - **Circular Plotting (--plot-circle)**
-  - **Advanced Visualizations:** Polar Rose (--plot-polarrose), Star Polygon (--plot-starpolygon), and Lemniscate plots.
+  - **Advanced Visualizations:** Polar Rose (--plot-polarrose), Star Polygon (--plot-starpolygon), Lemniscate (--lemniscate) plotting functions.
+  - **Bessel Plotting:** New Bessel plotting function (--plot-bessel) using the Bessel function of the first kind.
 
 - **Improved Test Coverage:** Enhanced mocks and test structure now bring test coverage near 100%.
 
@@ -58,7 +59,7 @@ Other available commands:
   Use flags such as `--plot-abs`, `--export-csv`, `--export-md`, etc., to generate specific plot outputs.
 
 - **Advanced Visualizations:**
-  Explore plots using flags like `--plot-fibonacci`, `--plot-sincos`, `--heatmap`, `--plot-spiral`, `--plot-circle`, `--plot-polarrose`, `--plot-starpolygon`, and `--lemniscate`.
+  Explore plots using flags like `--plot-fibonacci`, `--plot-sincos`, `--heatmap`, `--plot-spiral`, `--plot-circle`, `--plot-polarrose`, `--plot-starpolygon`, `--lemniscate`, and now `--plot-bessel`.
 
 - **Debug Mode:**
   ```bash
@@ -70,11 +71,11 @@ Other available commands:
 
 ## Changelog
 
-- **0.7.79 (Latest):**
+- **0.7.80 (Latest):**
   - Extended functionalities with new spiral, circular, and custom plotting features.
   - Added Fibonacci spiral plotting and combined sine-cosine plotting (--plot-sincos).
   - Introduced new circular plotting with flag --plot-circle.
-  - **New:** Added Polar Rose (--plot-polarrose), Star Polygon (--plot-starpolygon), and Lemniscate (--lemniscate) plotting functions.
+  - **New:** Added Polar Rose (--plot-polarrose), Star Polygon (--plot-starpolygon), Lemniscate (--lemniscate) and Bessel (--plot-bessel) plotting functions.
   - Pruned legacy drift to align with the mission statement.
   - **TEST:** Improved test coverage by adding beforeEach hooks and exporting a resetOverrides utility.
   - **REFRESH:** Updated README to reflect changes and the updated CONTRIBUTING guidelines.

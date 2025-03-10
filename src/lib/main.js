@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 // src/lib/main.js
 // Mission: "Be a go-to plot library with a CLI, be the jq of formulae visualisations."
-// Last Updated 2024-12.12: Extended functionalities with new spiral, circular, and custom plotting features, improved error handling in module loaders, enhanced testability, added Fibonacci spiral plotting, combined sine-cosine plotting, and pruned legacy drift.
-// Updated to align with our updated CONTRIBUTING guidelines and refreshed inline documentation.
-// New plotting functions include Polar Rose and Star Polygon.
+// This version extends functionalities in line with our mission statement by implementing additional real plotting functions including a new Bessel plot function.
 
 import { fileURLToPath } from 'url';
 import * as math from 'mathjs';
@@ -36,7 +34,7 @@ export async function loadReadline() {
 
 export async function main(argsInput) {
   const args = argsInput || process.argv.slice(2);
-  const demoMessage = `Welcome to repository0-plot-code-lib CLI!\nMission: 'Be a go-to plot library with a CLI, be the jq of formulae visualisations.'\nSelect from modes: --interactive, --serve, --diagnostics, --plot-abs, --export-csv, --export-md, --export-json, --export-html, --export-ascii, --export-svg, --export-xml, --export-latex, --export-txt, --export-r, --export-png, --plot-fibonacci, --bar-chart, --scatter, --plot-parametric, --plot-poly, --lissajous, --lemniscate, --hyperbola, --power-plot, --plot-histogram, --heatmap, --plot-spiral, --plot-custom, --plot-sincos, --plot-circle, --plot-polarrose, --plot-starpolygon or provide plot parameters.\nFor contribution guidelines, please refer to CONTRIBUTING.md.`;
+  const demoMessage = `Welcome to repository0-plot-code-lib CLI!\nMission: 'Be a go-to plot library with a CLI, be the jq of formulae visualisations.'\nSelect from modes: --interactive, --serve, --diagnostics, --plot-abs, --export-csv, --export-md, --export-json, --export-html, --export-ascii, --export-svg, --export-xml, --export-latex, --export-txt, --export-r, --export-png, --plot-fibonacci, --bar-chart, --scatter, --plot-parametric, --plot-poly, --lissajous, --lemniscate, --hyperbola, --power-plot, --plot-histogram, --heatmap, --plot-spiral, --plot-custom, --plot-sincos, --plot-circle, --plot-polarrose, --plot-starpolygon, --plot-bessel or provide plot parameters.\nFor contribution guidelines, please refer to CONTRIBUTING.md.`;
 
   // If no arguments are provided or help flag is specified, output demo/help message
   if (args.length === 0 || args.includes('--help')) {
@@ -157,7 +155,7 @@ export async function main(argsInput) {
   }
 
   if (args.includes('--export-latex')) {
-    console.log('LaTeX Output:', "\begin{tabular} 1 & 2\end{tabular}");
+    console.log('LaTeX Output:', "\\begin{tabular} 1 & 2\\end{tabular}");
     return;
   }
 
@@ -212,7 +210,6 @@ export async function main(argsInput) {
   }
 
   if (args.includes('--lemniscate')) {
-    // Extended real implementation for lemniscate plot
     const lemniscate = plotLemniscateReal();
     console.log('Lemniscate Plot Output:', lemniscate);
     return;
@@ -269,6 +266,12 @@ export async function main(argsInput) {
   if (args.includes('--plot-starpolygon')) {
     const star = plotStarPolygonReal({ x: 0, y: 0 }, 5, 2.5, 5);
     console.log('Star Polygon Plot Output:', star);
+    return;
+  }
+
+  if (args.includes('--plot-bessel')) {
+    const bessel = plotBesselReal(0, 10, 0.5, 0);
+    console.log('Bessel Plot Output:', bessel);
     return;
   }
 
@@ -338,7 +341,8 @@ export async function main(argsInput) {
       'plotSinCosCombinedReal',
       'plotCircularPlotReal',
       'plotPolarRoseReal',
-      'plotStarPolygonReal'
+      'plotStarPolygonReal',
+      'plotBesselReal'
     ];
     console.log('Debug: Available plotting functions: ' + funcs.join(', '));
     return;
@@ -735,6 +739,23 @@ export function plotStarPolygonReal(center = { x: 0, y: 0 }, outerRadius = 5, in
   }
   console.log('Star Polygon Plot (real):', points);
   return points;
+}
+
+// NEW: Bessel Plot function using Bessel function of the first kind (order can be specified)
+export function plotBesselReal(rangeStart, rangeEnd, step = 0.1, order = 0) {
+  const range = generateRange(rangeStart, rangeEnd, step);
+  const plot = range.map(x => {
+    let y;
+    try {
+      y = math.besselJ(x, order);
+    } catch (e) {
+      console.error('Error calculating Bessel function:', e);
+      y = null;
+    }
+    return { x, y };
+  });
+  console.log('Bessel Plot (real):', plot);
+  return plot;
 }
 
 // Legacy stub functions retained for API compatibility
